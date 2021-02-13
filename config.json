@@ -1,0 +1,10 @@
+{
+    "protocol": "http",
+    "server": "119.45.41.68",
+    "port": "8080",
+    "auth_key": "abc612008",
+    "qq": 3307614848,
+    "catch_message": true,
+    "admins": [1284114089],
+    "heart": 5000
+}

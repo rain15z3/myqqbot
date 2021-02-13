@@ -1,0 +1,16 @@
+{
+  "name": "myqqbot",
+  "version": "1.0.0",
+  "description": "A QQ bot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RainbowBird",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "request": "^2.88.2",
+    "ws": "^7.4.3"
+  }
+}
