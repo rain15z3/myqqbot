@@ -15,7 +15,7 @@ module.exports = () => {
 
     let callerLogIndex = 0;
     for (let i = 0; i < stack_arr.length; i++) {
-        if (stack_arr[i].indexOf('print.js') > 0 && i + 1 < stack_arr.length) {
+        if (stack_arr[i].indexOf('logger.js') > 0 && i + 1 < stack_arr.length) {
             callerLogIndex = i + 1;
             break;
         }

@@ -1,30 +1,28 @@
 const chalk = require('chalk');
 const getDate = require('./func/getDate');
+const getCaller = require('./func/getCaller');
 
 module.exports = print = {
     info: ($message) => {
-        let date = getDate();
-        console.log(`[${date}]${chalk.blue('[INFO]')} ${$message}`);
+        console.log(`[${getDate()}][${getCaller()}]${chalk.blue('[INFO]')} ${$message}`);
     },
     warn: ($message) => {
-        let date = getDate();
-        console.warn(`[${date}]${chalk.yellow(`[WARN] ` + $message)}`);
+        console.warn(`[${getDate()}][${getCaller()}]${chalk.yellow(`[WARN] ` + $message)}`);
     },
     error: ($message) => {
-        let date = getDate();
-        console.error(`[${date}]${chalk.red(`[ERROR] ` + $message)}`);
+        console.error(`[${getDate()}][${getCaller()}]${chalk.red(`[ERROR] ` + $message)}`);
+        if ($message.hasOwnProperty("stack")) {
+            console.error($message.stack);
+        }
     },
     fatal: ($message) => {
-        let date = getDate();
-        console.error(`[${date}]${chalk.red(`[FATAL] ` + $message)}`);
+        console.error(`[${getDate()}][${getCaller()}]${chalk.red(`[FATAL] ` + $message)}`);
         //setTimeout(() => process.exit(), 500);
     },
     success: ($message) => {
-        let date = getDate();
-        console.log(`[${date}]${chalk.blue('[INFO]')} ${chalk.green($message)}`);
+        console.log(`[${getDate()}][${getCaller()}]${chalk.blue('[INFO]')} ${chalk.green($message)}`);
     },
     message: ($message) => {
-        let date = getDate();
-        console.log(`[${date}]${chalk.blue('[MESSAGE]')} ${$message}`);
+        console.log(`[${getDate()}][${getCaller()}]${chalk.blue('[MESSAGE]')} ${$message}`);
     }
 }
