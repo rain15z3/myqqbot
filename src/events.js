@@ -1,6 +1,8 @@
 const request = require("./utils/request");
 const logger = require("./utils/logger");
 const conf = require("./conf");
+const apis = require("./apis");
+const chalk = require("chalk");
 
 let event_new_request = async ($message) => {
   let accept_event = {
@@ -27,7 +29,7 @@ let event_new_request = async ($message) => {
 let split_command = async ($message) => {
   if ($message === "") return -1;
 
-  let commands = [];
+  let commands;
 
   commands = $message.split(" ");
   if (commands[0] === "") // 删除多余空格
@@ -96,9 +98,24 @@ let group_message = async ($message) => {
   }
 }
 
+let group_message_print = async ($message) => {
+  if ($message["type"] !== "GroupMessage") return -1;
+
+  let sender = $message["sender"];
+  let output = `[${sender["group"]["name"]}(${sender["group"]["id"]})] ${sender["memberName"]}(${sender["id"]}) -> `;
+
+  if ($message["messageChain"][1].type === "Plain") {
+    output += $message["messageChain"][1].text;
+  } else {
+    output += chalk.green($message["messageChain"][1].type);
+  }
+
+  logger.info(output);
+}
+
+
 module.exports = async ($message) => {
   $message = JSON.parse($message);
-  console.log($message);
 
   try {
     switch ($message["type"]) {
@@ -109,6 +126,7 @@ module.exports = async ($message) => {
         await event_new_request($message);
         break;
       case "GroupMessage":
+        await group_message_print($message);
         await group_message($message);
         break;
     }

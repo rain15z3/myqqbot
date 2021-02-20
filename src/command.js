@@ -1,6 +1,10 @@
-const request = require("./utils/request");
-const logger = require("./utils/logger");
-const conf = require("./conf");
+const apis = require("./apis");
+
+let send_group_message = async ($object, $message) => {
+  return apis.sendGroupMessage(
+    $object["sender"]["group"]["id"],
+    [{"type": "Plain", "text": $message}]);
+}
 
 module.exports = ($message, $command_list) => {
   if ($command_list[0] === "喵") {
