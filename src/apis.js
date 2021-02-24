@@ -3,7 +3,7 @@ const request = require("./utils/request");
 
 module.exports = {
   sendGroupMessage: async ($target, $message) => {
-    await request.post("/sendGroupMessage", {
+    return request.post("/sendGroupMessage", {
       "sessionKey": conf["data"].session,
       "target": $target,
       "messageChain": $message

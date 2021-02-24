@@ -110,7 +110,7 @@ let group_message_print = async ($message) => {
     output += chalk.green($message["messageChain"][1].type);
   }
 
-  logger.info(output);
+  logger.message(output);
 }
 
 
